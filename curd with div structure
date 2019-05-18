@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+        <title>curd with div structure</title>
+    <script type="text/javascript">
+    whole =  document.createElement('div');
+    
+    function add_content(){
+        whole.setAttribute('id','whole_wrap')
+        var fom = document.getElementById('myform');
+        var txt = fom.querySelectorAll("[type='text']");
+        var txt_len = txt.length;
+        var wrap = document.createElement('div');
+        for(i=0;i < txt_len+1 ; i++){
+        var ele =  document.createElement('p');
+        wrap.appendChild(ele);
+        }
+        whole.appendChild(wrap);
+        document.body.appendChild(whole);
+        var p_tag = wrap.querySelectorAll('p');
+        for (i=0 ; i< txt_len;i++){
+            p_tag[i].innerHTML = txt[i].value; 
+        }
+        p_tag[txt_len].innerHTML = '<a> edit </a>';
+        var ff = document.getElementById('whole_wrap');
+        var len = ff.childElementCount;
+        wrap.setAttribute('id','demo'+len);
+        wrap.setAttribute('class','same');
+    }
+        
+	</script>
+	<style>
+    .same p {
+        float: left;
+        width: 130px;
+        
+    }
+
+    div {
+        display: table;
+    }
+
+    div#whole_wrap {
+        text-align: center;
+    }
+    a{
+			cursor: pointer;
+			text-decoration: underline;
+			color: #0000ee;
+		}
+    </style>
+    
+<body>
+
+    <form id='myform'> 
+            <input id = 'Name' type='text' placeholder="Name">
+			<input id='suma1'  type='text' placeholder='e-resizename'>
+			<input id='suma2'  type='text' placeholder='manifest-name'>
+			<input id='suma3'  type='text' placeholder='icon-name'>
+            <input type ='button' value= 'ok' id='but_ok' onclick="add_content()">
+            
+    </form>
+
+
+</body>
+</html>
