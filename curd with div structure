@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
         <title>curd with div structure</title>
-    <script type="text/javascript">
-    whole =  document.createElement('div');
+    <script type="text/javascript"> 
     
+    whole =  document.createElement('div');
+
     function add_content(){
         whole.setAttribute('id','whole_wrap')
         var fom = document.getElementById('myform');
@@ -20,13 +21,51 @@
         for (i=0 ; i< txt_len;i++){
             p_tag[i].innerHTML = txt[i].value; 
         }
-        p_tag[txt_len].innerHTML = '<a> edit </a>';
+        p_tag[txt_len].innerHTML = '<a onclick="edit(this)"> edit </a>';
         var ff = document.getElementById('whole_wrap');
         var len = ff.childElementCount;
         wrap.setAttribute('id','demo'+len);
         wrap.setAttribute('class','same');
     }
-        
+
+    function edit(x){
+        var tag_par = x.parentNode;
+        par = tag_par.parentElement;
+        var query_p = par.querySelectorAll('p');
+        var len = query_p.length;
+        for (i=0 ;i< len-1 ;i++){
+            var fom = document.getElementById('myform');
+            var txt = fom.querySelectorAll("[type='text']");
+            var inn = par.querySelectorAll('p');
+            txt[i].value = inn[i].innerHTML ;
+        }
+        document.getElementById('myform').querySelectorAll("[type='button']")[0].style.display = 'none';
+        document.getElementById('myform').querySelectorAll("[type='button']")[1].style.display = 'block';
+        document.getElementById('myform').querySelectorAll("[type='button']")[2].style.display = 'block';
+
+    }  
+
+    function update(y){
+        paren = y ;
+        var count = paren.childElementCount;
+        for (j = 0; j < count-1; j++){
+            var tab_of_p = paren.querySelectorAll('p');
+            var fom = document.getElementById('myform');
+            var txt = fom.querySelectorAll("[type='text']");
+            tab_of_p[j].innerHTML = txt[j].value ;
+        }
+        document.getElementById('myform').querySelectorAll("[type='button']")[0].style.display = 'block';
+        document.getElementById('myform').querySelectorAll("[type='button']")[1].style.display = 'none';
+        document.getElementById('myform').querySelectorAll("[type='button']")[2].style.display = 'none';
+    }
+
+    function delete_con(s){
+        var del = s ;
+        del.remove();
+        document.getElementById('myform').querySelectorAll("[type='button']")[0].style.display = 'block';
+        document.getElementById('myform').querySelectorAll("[type='button']")[1].style.display = 'none';
+        document.getElementById('myform').querySelectorAll("[type='button']")[2].style.display = 'none';
+    }
 	</script>
 	<style>
     .same p {
@@ -34,30 +73,45 @@
         width: 130px;
         
     }
-
     div {
         display: table;
     }
-
     div#whole_wrap {
         text-align: center;
+        float: left;
     }
     a{
-			cursor: pointer;
-			text-decoration: underline;
-			color: #0000ee;
-		}
+        cursor: pointer;
+        text-decoration: underline;
+        color: #0000ee;
+	}
+    input[type="button"] {
+        width: 70px;
+        height: 20px;
+        float: left;
+        margin: 0 0 0 10px;
+    }
+
+    input[type="text"] {
+        float: left;
+        margin: 0 0 0 10px;
+    }
+    form#myform {
+        display: inline-block;
+    }
+
     </style>
     
 <body>
 
     <form id='myform'> 
-            <input id = 'Name' type='text' placeholder="Name">
-			<input id='suma1'  type='text' placeholder='e-resizename'>
-			<input id='suma2'  type='text' placeholder='manifest-name'>
-			<input id='suma3'  type='text' placeholder='icon-name'>
+            <input id = 'Name' type='text' placeholder="something">
+			<input id='suma1'  type='text' placeholder='something'>
+			<input id='suma2'  type='text' placeholder='something'>
+			<input id='suma3'  type='text' placeholder='something'>
             <input type ='button' value= 'ok' id='but_ok' onclick="add_content()">
-            
+            <input type ='button' value= 'update' id='but_update' onclick="update(par)" style="display: none;">
+            <input type ='button' value= 'delete' id='but_delete' onclick="delete_con(par)" style="display: none;">
     </form>
 
 
