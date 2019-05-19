@@ -106,9 +106,9 @@
 
     <form id='myform'> 
             <input id = 'Name' type='text' placeholder="something">
-			<input id='suma1'  type='text' placeholder='something'>
-			<input id='suma2'  type='text' placeholder='something'>
-			<input id='suma3'  type='text' placeholder='something'>
+			<input id='demo1'  type='text' placeholder='something'>
+			<input id='demo2'  type='text' placeholder='something'>
+			<input id='demo3'  type='text' placeholder='something'>
             <input type ='button' value= 'ok' id='but_ok' onclick="add_content()">
             <input type ='button' value= 'update' id='but_update' onclick="update(par)" style="display: none;">
             <input type ='button' value= 'delete' id='but_delete' onclick="delete_con(par)" style="display: none;">
